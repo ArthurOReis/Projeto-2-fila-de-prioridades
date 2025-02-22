@@ -1,9 +1,26 @@
-cmake_minimum_required(VERSION 3.27)
-project(modelo C)
+cmake_minimum_required(VERSION 3.21)
+
+project(libprg
+        LANGUAGES C
+        VERSION 0.0.1
+        DESCRIPTION "A minimal C library template using Modern CMake")
 
 set(CMAKE_C_STANDARD 17)
-include_directories(include)
 
-add_executable(modelo main.c)
-target_link_libraries(modelo ${CMAKE_SOURCE_DIR}/lib/libprg.a m)
+add_subdirectory(libprg)
+#add_subdirectory(tests)
+
+add_executable(app main.c
+        libprg/src/include/libprg/THash.h)
+target_link_libraries(app libprg)
+
+# https://cmake.org/cmake/help/book/mastering-cmake/chapter/Packaging%20With%20CPack.html
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
+
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  # For IDEs indexing
+  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+endif()
 
