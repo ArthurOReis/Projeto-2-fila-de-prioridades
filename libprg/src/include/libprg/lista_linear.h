@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#define CAPACIDADE_LISTA 8
+
 typedef struct {
     // atributos da lista_linear linear
     char* * area; // um vetor de ponteiros do tipo char*
@@ -53,5 +55,20 @@ int lista_linear_vazia(lista_linear_t * l);
 
 // retorna o comprimento da lista
 int lista_linear_comprimento(lista_linear_t * l);
+
+//! ordena a lista em ordem alfabética
+void lista_linear_ordena(lista_linear_t * l);
+
+// adiciona um valor em uma lista ordenada
+// resultado: 1=sucesso, 0=falha
+int lista_linear_adiciona_ordenada(lista_linear_t * l, void* valor);
+
+// procura um valor na lista ordenada
+// resultado: -1=falha, >=0: posição do valor
+int lista_linear_procura_ordenada(lista_linear_t * l, void* valor);
+
+// remove um valor de uma lista ordenada
+// resultado: 1=sucesso, 0=falha
+int lista_linear_remove_ordenada(lista_linear_t * l, void* valor);
 
 #endif

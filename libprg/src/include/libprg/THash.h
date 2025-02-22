@@ -1,21 +1,23 @@
 #ifndef LIBPRG_THASH_H
 #define LIBPRG_THASH_H
 
+#include <libprg/lista_linear.h>
+
 #define CAPACIDADE_THASH 31
+#define FATOR_CARGA 7
+
+// typedef struct {
+//     char * chave;
+//     char * valor;
+// } par_t;
 
 typedef struct {
-    char * chave;
-    char * valor;
-} par_t;
-
-typedef struct {
-    par_t** tab; // um vetor de par_t*
+    lista_linear_t** tab; // um vetor de lista_linear_t*
     int linhas; // quantidade de linhas da tabela
     int quantidade;
-    float fatorDeCarga;
-    float maxDeCarga;
     // campos usados para iteração
     int _linha;
+    int _pos;
 } thash_t;
 
 // cria uma tabela hash
@@ -28,8 +30,6 @@ void thash_destroi(thash_t * tab);
 // adiciona um par (chave, valor) à tabela hash
 // retorna: 1=sucesso, 0=falha
 int thash_adiciona(thash_t * tab, char * chave, char* valor);
-
-void thash_expande(thash_t * tab);
 
 // procura um par com determinada chave na tabela, e retorna o valor nele contido
 // retorna: o valor, ou NULL em caso de falha
@@ -54,6 +54,6 @@ void thash_inicia_iteracao(thash_t * tab);
 
 // para acessar o próximo valor da iteração, chama-se esta outra função
 // ela retorna: o valor da próxima iteração, ou NULL em caso de falha ou fim de iteração
-par_t * thash_proximo(thash_t * tab);
+lista_linear_t * thash_proximo(thash_t * tab);
 
 #endif //LIBPRG_THASH_H
