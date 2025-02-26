@@ -45,9 +45,11 @@ int thash_adiciona(thash_t * tab, char * chave, char* valor) {
     if (!tab->tab[linha]) {
         tab->tab[linha] = lista_linear_cria();
     }
+
     char *novo_par = malloc(strlen(chave) + strlen(valor) + 2);
     sprintf(novo_par, "%s\xFF%s", chave, valor); // Usa \xFF para separar
     lista_linear_adiciona(tab->tab[linha], novo_par);
+    tab->quantidade++;
     return 1;
 }
 
@@ -78,6 +80,7 @@ int thash_remove(thash_t * tab, char* chave) {
         if (strncmp(item, chave, strlen(chave)) == 0 && item[strlen(chave)] == '\xFF') {
             // lista_linear_remove já realiza a compactação e libera o espaço do item
             lista_linear_remove(lista, item);
+            tab->quantidade--;
 
             // Se a lista ficou vazia, liberamos a memória da própria lista
             if (lista_linear_comprimento(lista) == 0) {

@@ -47,7 +47,7 @@ int thash_vazia(thash_t * tab);
 int thash_existe(thash_t * tab, char * chave);
 
 // retorna a quantidade de pares (chave, valor) contidos na tabela
-inline int thash_tamanho(thash_t * tab);
+int thash_tamanho(thash_t * tab);
 
 // para iniciar uma iteração, deve-se chamar esta função
 void thash_inicia_iteracao(thash_t * tab);
