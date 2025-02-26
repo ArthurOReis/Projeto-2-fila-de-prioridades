@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define CAPACIDADE_CLASSE 6
+#define CAPACIDADE_CLASSE 7
 #define CLASSE_MAIOR_PRIORIDADE 'A'
 #define CLASSE_MENOR_PRIORIDADE 'F'
 
@@ -50,7 +50,7 @@ int gerar_senha_cliente(thash_t *hash, char *input, int *total_por_cliente, int 
         return 0;
     }
 
-    int classe_idx = clientes_quantidade_classes(strdup(input)); /* Pega o valor ASCII do input, e transforma em um número, que será o index da lista de quantidade de clientes por classe */
+    int classe_idx = clientes_quantidade_classes(input); /* Pega o valor ASCII do input, e transforma em um número, que será o index da lista de quantidade de clientes por classe */
 
     if (classe_idx < 0 || classe_idx >= CAPACIDADE_CLASSE) {
         printf("Erro: Classe inválida!\n");
