@@ -13,28 +13,25 @@ Para implementar a fila de prioridades, utilizamos a biblioteca `libprg`, com a 
 
 * Código exemplo de teste de funcionalidade da biblioteca `THash.c`:
 ```C
-    int main(){
-        thash_t *hash_exemplo = thash_cria();
-        thash_adiciona(hash_exemplo, "A", "A000");
-        thash_adiciona(hash_exemplo, "A", "A001");
-        thash_adiciona(hash_exemplo, "A", "A002");
-        thash_adiciona(hash_exemplo, "A", "A003");
-
-        thash_adiciona(hash_exemplo, "B", "B000");
-        thash_adiciona(hash_exemplo, "B", "B001");
-        thash_adiciona(hash_exemplo, "B", "B002");
-        thash_adiciona(hash_exemplo, "B", "B003");
-        
-        while(thash_tamanho(hash_exemplo) > 0){
-            printf("%s\n", thash_obtem(hash_exemplo, "A"));
-            thash_remove(hash_exemplo, "A");
-
-            printf("%s\n", thash_obtem(hash_exemplo, "B"));
-            thash_remove(hash_exemplo, "B");
-        }
-        
-        return 0;
+int main(){
+    thash_t *hash_exemplo = thash_cria();
+    thash_adiciona(hash_exemplo, "A", "A000");
+    thash_adiciona(hash_exemplo, "A", "A001");
+    thash_adiciona(hash_exemplo, "A", "A002");
+    thash_adiciona(hash_exemplo, "A", "A003");
+    thash_adiciona(hash_exemplo, "B", "B000");
+    thash_adiciona(hash_exemplo, "B", "B001");
+    thash_adiciona(hash_exemplo, "B", "B002");
+    thash_adiciona(hash_exemplo, "B", "B003");
+    
+    while(thash_tamanho(hash_exemplo) > 0){
+        printf("%s\n", thash_obtem(hash_exemplo, "A"));
+        thash_remove(hash_exemplo, "A");
+        printf("%s\n", thash_obtem(hash_exemplo, "B"));
+        thash_remove(hash_exemplo, "B");
     }
+        
+    return 0;
 }
 ```
 
