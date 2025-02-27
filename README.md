@@ -245,38 +245,6 @@ int clientes_quantidade_classes(char *str) {
 }
 ```
 ---
-### Função `converte_para_classe`
-
-A função `converte_para_classe()` converte um índice inteiro (representando uma classe de cliente) de volta em um caractere correspondente à classe (por exemplo, 0 para "A", 1 para "B", etc.). O funcionamento da função é descrito a seguir:
-
-1. **Aloca memória** para uma string que irá armazenar o número da classe em formato de string.
-
-2. **Verifica se a alocação foi bem-sucedida**. Se não, retorna `NULL`.
-
-3. **Converte o índice inteiro para string** usando `sprintf()`.
-
-4. **Percorre a string resultante**:
-    * Para cada caractere, realiza uma operação aritmética adicionando 17, o que converte o número de volta no caractere correspondente à classe:
-        - 0 se torna 'A'
-        - 1 se torna 'B'
-        - 2 se torna 'C', e assim por diante.
-
-5. **Retorna a string contendo a classe correspondente**.
-
-```C
-char *converte_para_classe(int index) {
-    char *classe_num = malloc(3);
-    if (classe_num == NULL) return NULL;
-
-    sprintf(classe_num, "%d", index);
-    for (int i = 0; classe_num[i] != '\0'; i++) {
-        classe_num[i] += 17; /* Transforma o inteiro em um caractere, para acessar a chave do hash que é a classe dos clientes, exemplo: 0 => A; 1 => B; 2 => C... */
-    }
-
-    return classe_num;
-}
-```
----
 ### Função `atende_cliente`
 
 A função `atende_cliente()` remove e exibe a senha do próximo cliente a ser atendido com base na prioridade da classe. A prioridade segue a ordem das classes (A é a mais prioritária e F a menos prioritária). Em caso de empate, o critério de desempate é a ordem de chegada. Onde a função:
@@ -337,6 +305,38 @@ void atende_cliente(thash_t *hash, int *quantidade) {
         }
     }
     printf("Nenhum cliente na fila.\n"); // Se não encontrou clientes
+}
+```
+---
+### Função `converte_para_classe`
+
+A função `converte_para_classe()` converte um índice inteiro (representando uma classe de cliente) de volta em um caractere correspondente à classe (por exemplo, 0 para "A", 1 para "B", etc.). O funcionamento da função é descrito a seguir:
+
+1. **Aloca memória** para uma string que irá armazenar o número da classe em formato de string.
+
+2. **Verifica se a alocação foi bem-sucedida**. Se não, retorna `NULL`.
+
+3. **Converte o índice inteiro para string** usando `sprintf()`.
+
+4. **Percorre a string resultante**:
+   * Para cada caractere, realiza uma operação aritmética adicionando 17, o que converte o número de volta no caractere correspondente à classe:
+      - 0 se torna 'A'
+      - 1 se torna 'B'
+      - 2 se torna 'C', e assim por diante.
+
+5. **Retorna a string contendo a classe correspondente**.
+
+```C
+char *converte_para_classe(int index) {
+    char *classe_num = malloc(3);
+    if (classe_num == NULL) return NULL;
+
+    sprintf(classe_num, "%d", index);
+    for (int i = 0; classe_num[i] != '\0'; i++) {
+        classe_num[i] += 17; /* Transforma o inteiro em um caractere, para acessar a chave do hash que é a classe dos clientes, exemplo: 0 => A; 1 => B; 2 => C... */
+    }
+
+    return classe_num;
 }
 ```
 
