@@ -50,7 +50,7 @@ int gerar_senha_cliente(thash_t *hash, char *input, int *total_por_cliente, int 
         return 0;
     }
 
-    int classe_idx = clientes_quantidade_classes(input); /* Pega o valor ASCII do input, e transforma em um número, que será o index da lista de quantidade de clientes por classe */
+    int classe_idx = clientes_quantidade_classes(strdup(input)); /* Pega o valor ASCII do input, e transforma em um número, que será o index da lista de quantidade de clientes por classe */
 
     if (classe_idx < 0 || classe_idx >= CAPACIDADE_CLASSE) {
         printf("Erro: Classe inválida!\n");
@@ -66,7 +66,7 @@ int gerar_senha_cliente(thash_t *hash, char *input, int *total_por_cliente, int 
     }
 
     char buffer[10];
-    sprintf(buffer, "%c%03d", input[0], senha_ordem[classe_idx] - 1); /* Organizando string para ficar no formato 'Xnnn' (X: letra correspondente à classe de cliente, nnn: contador de clientes) */
+    sprintf(buffer, "%s%03d", input, senha_ordem[classe_idx] - 1); /* Organizando string para ficar no formato 'Xnnn' (X: letra correspondente à classe de cliente, nnn: contador de clientes) */
 
     printf("Senha: %s; Quantia clientes na frente: %d;\n", buffer, quantidade_total);
     thash_adiciona(hash, input, buffer);
