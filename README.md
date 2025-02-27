@@ -1,4 +1,4 @@
-# Projeto 2: Fila de Prioridades - Com Hash Buckets
+# Projeto 2: Fila de Prioridades - Com Tabela Hash
 
 ## 📌 Introdução
 
@@ -9,7 +9,17 @@ Cada cliente pertence a uma das categorias de prioridade, representadas pelas le
 
 ## 🛠 Ferramentas
 
-Para implementar a fila de prioridades, utilizamos a biblioteca `libprg`, com a estrutura `THash`. Essa escolha foi feita porque os buckets armazenam listas de valores acessíveis por uma chave, facilitando a organização e recuperação dos elementos por prioridade.
+Para implementar a fila de prioridades, utilizamos a biblioteca libprg, com a estrutura `THash`.
+
+### 📚 Funcionalidades
+
+- **Gerar Senha**: O programa permite que os usuários insiram sua classe de atendimento e gera uma senha única para cada cliente. A senha segue o formato 'Xnnn', onde 'X' é a classe e 'nnn' é um número sequencial.
+
+- **Atender Cliente**: O sistema atende os clientes na ordem de prioridade, removendo a primeira senha da fila e informando quantos clientes ainda estão na fila.
+
+### 🎲 Estruturas de Dados
+
+- **Tabela Hash (`thash_t`)**: Utilizada para armazenar as senhas associadas a cada cliente. Esta estrutura foi escolhida porque os buckets armazenam listas de valores acessíveis por uma chave, facilitando a organização e recuperação dos elementos por prioridade.
 
 * Código exemplo de teste de funcionalidade da biblioteca `THash.c`:
 ```C
